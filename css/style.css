@@ -44,7 +44,7 @@ body {
     margin: 0 auto;
 }
 
-.link {
+.nav__link {
     color: var(--gunmetal);
     font-size: 15px;
     font-weight: 500;
@@ -93,15 +93,25 @@ header {
     justify-content: space-between;
 }
 
+.burger {
+    display: none;
+}
+
 .logo__img {
     width: 64px;
 }
 
-.link:hover {
+.nav__list {
+    display: flex;
+    list-style: none;
+    font-family: "Inter", sans-serif;
+}
+
+.nav__link:hover {
     color: var(--light-vermillion);
 }
 
-.link + .link {
+.nav__item + .nav__item {
     margin-left: 40px;
 }
 /* end header */
@@ -252,6 +262,81 @@ footer {
 
     header {
         margin: 30px auto;
+    }
+
+    .burger {
+        display: block;
+        width: 42px;
+        height: 24px;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+
+    .burger span {
+        width: 100%;
+        height: 4px;
+        background-color: #000;
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: background-color 0.5s ease-in-out;
+    }
+
+    .burger span::before, .burger span::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background-color: #000;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .burger span::before {
+        transform: translateY(-10px);
+    }
+
+    .burger span::after {
+        transform: translateY(10px);
+    }
+
+    .burger.active span {
+        background-color: transparent;
+    }
+
+    .burger.active span::before {
+        transform: translateY(0px) rotateZ(45deg);
+    }
+
+    .burger.active span::after {
+        transform: translateY(0px) rotateZ(-45deg);
+    }
+
+    .nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 255px;
+        height: 415px;
+        background: var(--almost-white);
+        padding-top: 145px;
+        padding-left: 25px;
+        transform: translateX(100%);
+        transition: transform 0.5s;
+    }
+
+    .nav.open {
+        transform: translateX(0);
+    }
+
+    .nav__list {
+        flex-direction: column;
+    }  
+
+    .nav__item + .nav__item {
+        margin-left: 0;
+        margin-top: 25px;
     }
 
     .logo__img {
